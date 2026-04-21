@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Feature Boilerplate
+
+Next.js boilerplate with a feature-first architecture, shared module boundaries, and a feature scaffold generator.
+
+## Tech Stack
+
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS
+- ESLint + Prettier
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create local environment values:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run development server:
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Convention
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Detailed conventions are documented in `docs/1-project-convention.md`.
 
-## Deploy on Vercel
+Core structure:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/features/*` for domain-specific logic
+- `src/shared/*` for cross-feature reusable modules
+- `src/shared/apis`, `src/shared/types`, `src/shared/libs` as shared boundaries
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Create a New Feature
+
+Use the generator:
+
+```bash
+pnpm create:feature <feature-name>
+```
+
+Example:
+
+```bash
+pnpm create:feature merchant-payment
+```
+
+It creates:
+
+- `components/`, `hooks/`
+- `<feature-name>.api.ts`
+- `<feature-name>.type.ts`
+- `<feature-name>.lib.ts`
+- `index.ts`
+
+## Scripts
+
+- `pnpm dev` - start local dev server
+- `pnpm build` - production build
+- `pnpm start` - run production build
+- `pnpm lint` - run ESLint
+- `pnpm lint:fix` - auto-fix ESLint issues
+- `pnpm prettier` - check formatting
+- `pnpm prettier:fix` - apply formatting
+
+## Publish As Template
+
+After pushing this repository to GitHub:
+
+1. Open repository `Settings`
+2. Enable `Template repository`
+3. Use `Use this template` to bootstrap new projects
