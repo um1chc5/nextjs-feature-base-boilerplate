@@ -1,7 +1,7 @@
 export type SharedApiHealth = {
-  ok: boolean;
-};
+  ok: boolean
+}
 
 export async function getSharedHealth(): Promise<SharedApiHealth> {
-  return { ok: true };
+  return { ok: true }
 }

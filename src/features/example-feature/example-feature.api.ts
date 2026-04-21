@@ -1,7 +1,7 @@
 export type ExampleFeatureApiHealth = {
-  ok: boolean;
-};
+  ok: boolean
+}
 
 export async function getExampleFeatureHealth(): Promise<ExampleFeatureApiHealth> {
-  return { ok: true };
+  return { ok: true }
 }
