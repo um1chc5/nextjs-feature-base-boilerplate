@@ -39,7 +39,31 @@ Core structure:
 
 - `src/features/*` for domain-specific logic
 - `src/shared/*` for cross-feature reusable modules
-- `src/shared/apis`, `src/shared/types`, `src/shared/libs` as shared boundaries
+- `src/shared/apis`, `src/shared/types`, `src/shared/libs`, `src/shared/stores` as shared boundaries
+
+Folder layout:
+
+```txt
+src/
+  features/
+    <feature-name>/
+      components/
+      hooks/
+      <feature-name>.api.ts
+      <feature-name>.type.ts
+      <feature-name>.lib.ts
+      <feature-name>.store.ts
+      index.ts
+      # If api/type/store has more than two files:
+      apis/
+      types/
+      stores/
+  shared/
+    apis/
+    types/
+    libs/
+    stores/
+```
 
 ## Create a New Feature
 
@@ -61,6 +85,7 @@ It creates:
 - `<feature-name>.api.ts`
 - `<feature-name>.type.ts`
 - `<feature-name>.lib.ts`
+- `<feature-name>.store.ts`
 - `index.ts`
 
 ## Scripts

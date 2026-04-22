@@ -29,10 +29,12 @@ try {
 
 await mkdir(path.join(featureRoot, "components"), { recursive: true });
 await mkdir(path.join(featureRoot, "hooks"), { recursive: true });
+await mkdir(path.join(featureRoot, "stores"), { recursive: true });
 
 const apiFileName = `${featureName}.api.ts`;
 const typeFileName = `${featureName}.type.ts`;
 const libFileName = `${featureName}.lib.ts`;
+const storeFileName = `${featureName}.store.ts`;
 
 await writeFile(
   path.join(featureRoot, apiFileName),
@@ -70,11 +72,26 @@ await writeFile(
 );
 
 await writeFile(
+  path.join(featureRoot, "stores", storeFileName),
+  [
+    `export type ${toPascalCase(featureName)}Store = {`,
+    "  isReady: boolean;",
+    "};",
+    "",
+    `export const initial${toPascalCase(featureName)}Store: ${toPascalCase(featureName)}Store = {`,
+    "  isReady: false,",
+    "};",
+    "",
+  ].join("\n"),
+);
+
+await writeFile(
   path.join(featureRoot, "index.ts"),
   [
     `export * from "./${apiFileName}";`,
     `export type * from "./${typeFileName}";`,
     `export * from "./${libFileName}";`,
+    `export * from "./stores/${storeFileName}";`,
     "",
   ].join("\n"),
 );
